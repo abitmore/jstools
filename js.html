@@ -1,0 +1,50 @@
+﻿<html><head>
+<object id='wShell' classid='clsid:72C24DD5-D70A-438B-8A42-98424B88AFB8'></object>
+</head>
+<body>
+<form name=fm>
+<table>
+<tr><td>
+<textarea name="a" rows=20 cols=80></textarea>
+</td><td>
+<textarea name="b" rows=20 cols=80></textarea>
+</td></tr>
+<tr><td>
+  document.fm.a
+<input type=button value=execute onclick="javascript:exec_a()">
+</td><td>
+  document.fm.b
+<input type=button value=execute onclick="javascript:exec_b()">
+</td></tr>
+<tr><td colspan=2>
+<textarea name="c" rows=10 cols=160 readonly></textarea>
+<br>document.fm.c [readonly] 
+<input type=button value=clear onclick="javascript:clear_c()">
+<br> Usage: log(msg);
+</td></tr>
+</table>
+</form>
+<script type="text/javascript">
+  function exec_a() {
+    try {
+      eval(document.fm.a.value);
+    } catch (E) {
+      log(E.message);
+    }
+  }
+  function exec_b() {
+    try {
+      eval(document.fm.b.value);
+    } catch (E) {
+      log(E.message);
+    }
+  }
+  function clear_c() {
+    document.fm.c.value = '';
+  }
+  function log(msg) {
+    document.fm.c.value += new Date()+' - '+msg+'\r\n';
+  }
+</script>
+</body>
+</html>
